@@ -43,8 +43,8 @@ public class Issue {
     public String toString() {
         return "Issue [number=" + number + ", id=" + id + ", state=" + state
                 + ", title=" + title + ", body=" + body + ", createdAt="
-                + createdAt + ", closedAt=" + closedAt + ", user=" + user
-                + ", assignee=" + assignee + "]";
+                + createdAt + ", closedAt=" + closedAt + ", user=" + user.toString()
+                + ", assignee=" + assignee.toString() + "]";
     }
     public Issue() {
         super();
