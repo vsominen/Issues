@@ -1,3 +1,3 @@
-Issue [number=0, id=0, state=closed, title=null, body=null, createdAt=null, closedAt=null, user=null, assignee=null]
+Issue [number=0, id=0, state=closed, title=null, body=null, createdAt=null, closedAt=null, user=User [login=vsominen, id=45], assignee=null]
 Issue [number=0, id=0, state=open, title=null, body=null, createdAt=null, closedAt=null, user=null, assignee=null]
-Issue [number=0, id=45, state=null, title=null, body=null, createdAt=null, closedAt=null, user=null, assignee=null]
+Issue [number=0, id=0, state=null, title=null, body=null, createdAt=null, closedAt=null, user=null, assignee=null]
