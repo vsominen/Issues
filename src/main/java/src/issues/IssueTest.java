@@ -11,6 +11,18 @@ import org.junit.Test;
 
 
 public class IssueTest { 
+    @Test
+    public void testCompareTo() {
+        Issue i=new Issue();
+        Issue j=new Issue();
+        Issue k=new Issue();
+        i.setId(1);
+        j.setId(2);
+        k.setId(3);
+        assertEquals(0,i.compareTo(i));
+        assertEquals(1,j.compareTo(i));
+        assertEquals(-1,i.compareTo(k));
+    }
 
     @Test
    public void testEqualsReflexive() {

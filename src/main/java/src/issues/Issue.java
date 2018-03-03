@@ -2,7 +2,7 @@ package issues;
 
 import java.util.Date;
 
-public class Issue {
+public class Issue implements Comparable<Issue> {
 
     public int number;
     public int id;
@@ -99,5 +99,16 @@ public class Issue {
         return assignee;
     }
     
-    
+    public int compareTo(Issue i) {
+
+        if (this.id > i.id) {
+            return 1;
+        }
+        else if (this.id < i.id) {
+            return -1;
+        }
+        else {
+            return 0;
+        }
+    }
 }
