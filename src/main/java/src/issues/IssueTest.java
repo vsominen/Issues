@@ -10,7 +10,7 @@ import java.text.SimpleDateFormat;
 import org.junit.Test;
 
 
-public class IssueTest {
+public class IssueTest { 
 
     @Test
    public void testEqualsReflexive() {

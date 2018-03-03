@@ -1,11 +1,13 @@
 package issues;
 
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.util.ArrayList;
+import java.io.IOException;
+import java.text.ParseException;
 import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
@@ -24,21 +26,28 @@ public class IssueParserTest {
            sb.append(line).append("\n"); 
            line = reader.readLine();    
        }
-       sb.append(reader.readLine());
+//sb.append(reader.readLine());
         fileAsString = sb.toString(); 
-        System.out.println(fileAsString);
+//        System.out.println(fileAsString);
         reader.close();
     }
     @Test
-    public void testParseIssues() throws Exception
+    public void testParseIssues() throws ParseException, IOException
     {
         IssueParser issueParserObject=new IssueParser();
-        List<Issue> al = new ArrayList<Issue>();
-        al=issueParserObject.parseIssues(fileAsString);
+        IssuesExporter exp=new IssuesExporter();
+        IssueTest is=new IssueTest();
+        is.testEqualsReflexive();
+        is.testEqualsTwoWithSameId();
+        is.testHashCodeWithSameId();
+        is.testToString();
+        System.out.println(fileAsString);
+//        System.exit(0);
+        List<Issue> al = issueParserObject.parseIssues(fileAsString);
         assertNotNull(al);
         assertEquals(3, al.size());
         Issue issue0 = al.get(0);
-        assertEquals(1,issue0.getId());
+        assertEquals(295014135,issue0.getId());
         
 
     }

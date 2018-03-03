@@ -9,7 +9,7 @@ public class Issue {
     public String state;
     public String title;
     public String body;
-    public Date createdAt;
+    public Date createdAt; 
     public Date closedAt;
     public User user;
     public User assignee;

@@ -6,7 +6,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class IssuesExporter {
+public class IssuesExporter { 
 
     public static void main() throws IOException {
         // TODO Auto-generated method stub

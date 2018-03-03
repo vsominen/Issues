@@ -4,7 +4,7 @@ public class User {
     
     private String login;
     private int id;
-    public User() {
+    public User() { 
        
     }
        
