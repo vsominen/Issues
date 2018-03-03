@@ -1,6 +1,9 @@
 package issues;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 
 public class Issue implements Comparable<Issue> {
 
@@ -104,13 +107,14 @@ public class Issue implements Comparable<Issue> {
     }
     
     public int compareTo(Issue i) {
-
+        List<Issue> al=new ArrayList<Issue>();
+        Collections.sort(al);
         if (this.id > i.id) {
             return 1;
         }
         else if (this.id < i.id) {
             return -1;
         }
-            return 0;
+        return 0;
     }
 }

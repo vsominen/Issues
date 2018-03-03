@@ -1,6 +1,5 @@
 package issues;
 
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
@@ -12,7 +11,6 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-
 public class IssueParserTest {
     private String fileAsString;
     
@@ -21,19 +19,16 @@ public class IssueParserTest {
        BufferedReader reader = new BufferedReader(new FileReader("C:\\github-repos\\githubapi-issues-vsominen\\src\\main\\java\\src\\issues\\sample-output.txt"));
        StringBuilder sb=new StringBuilder();
        String line=reader.readLine();
-       while(line != null)
-       { 
+       while(line != null) { 
            sb.append(line).append("\n"); 
            line = reader.readLine();    
        }
-//sb.append(reader.readLine());
         fileAsString = sb.toString(); 
-//        System.out.println(fileAsString);
         reader.close();
     }
+    
     @Test
-    public void testParseIssues() throws ParseException, IOException
-    {
+    public void testParseIssues() throws ParseException, IOException {
         IssueParser issueParserObject=new IssueParser();
         IssuesExporter exp=new IssuesExporter();
         IssueTest is=new IssueTest();
@@ -42,14 +37,11 @@ public class IssueParserTest {
         is.testHashCodeWithSameId();
         is.testToString();
         System.out.println(fileAsString);
-//        System.exit(0);
         List<Issue> al = issueParserObject.parseIssues(fileAsString);
         assertNotNull(al);
         assertEquals(3, al.size());
         Issue issue0 = al.get(0);
         assertEquals(295014135,issue0.getId());
-        
-
     }
     
 }

@@ -9,7 +9,6 @@ import java.util.List;
 public class IssuesExporter { 
 
     public static void main() throws IOException {
-        // TODO Auto-generated method stub
         
         PrintWriter out=new PrintWriter(new File("issues.txt"));
         try {     
@@ -27,8 +26,7 @@ public class IssuesExporter {
                 out.println(i.toString());
             }
         }
-        catch(Exception e)
-        {
+        catch(Exception e) {
             System.out.println(e);
         }
         finally {

@@ -41,8 +41,7 @@ public class IssueTest {
         assertEquals(1, issueA.getId());
     }
     @Test
-    public void testHashCodeWithSameId()
-    {
+    public void testHashCodeWithSameId() {
         Issue one=new Issue();
         one.setId(5);
         Issue two=new Issue();
@@ -50,8 +49,7 @@ public class IssueTest {
         assertEquals(one.hashCode(),two.hashCode());
     }
     @Test
-   public  void testToString() throws ParseException, IOException
-    {
+   public  void testToString() throws ParseException, IOException {
         SimpleDateFormat d = new SimpleDateFormat("mm-dd-yyyy");
         Issue obj=new Issue();
         IssuesExporter i=new IssuesExporter();
@@ -66,8 +64,6 @@ public class IssueTest {
         assertTrue(u.equals(u));
         assertEquals(4, u.getId());
         assertEquals(u.hashCode(),u.hashCode());
-        
-        
         obj.setId(4);
         obj.setState("closed");
         obj.setTitle("New Issue");
