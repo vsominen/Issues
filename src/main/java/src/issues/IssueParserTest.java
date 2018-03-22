@@ -13,25 +13,24 @@ import org.junit.Test;
 
 public class IssueParserTest {
     private String fileAsString;
-    
+
     @Before
     public void setUp() throws Exception {
-       BufferedReader reader = new BufferedReader(new FileReader("C:\\github-repos\\githubapi-issues-vsominen\\src\\main\\java\\src\\issues\\sample-output.txt"));
-       StringBuilder sb=new StringBuilder();
-       String line=reader.readLine();
-       while(line != null) { 
-           sb.append(line).append("\n"); 
-           line = reader.readLine();    
-       }
-        fileAsString = sb.toString(); 
-        reader.close();
+        BufferedReader reader = new BufferedReader(new FileReader(
+                "C:\\github-repos\\githubapi-issues-vsominen\\src\\main\\java\\src\\issues\\sample-output.txt"));
+        StringBuilder sb = new StringBuilder();
+        String line = reader.readLine();
+        while (line != null) {
+            sb.append(line).append("\n");
+            line = reader.readLine();
+        }
+        fileAsString = sb.toString();
     }
-    
+
     @Test
-    public void testParseIssues() throws ParseException, IOException {
-        IssueParser issueParserObject=new IssueParser();
-        IssuesExporter exp=new IssuesExporter();
-        IssueTest is=new IssueTest();
+    public void testParseIssues() throws Exception {
+        IssueParser issueParserObject = new IssueParser();
+        IssueTest is = new IssueTest();
         is.testEqualsReflexive();
         is.testEqualsTwoWithSameId();
         is.testHashCodeWithSameId();
@@ -41,7 +40,7 @@ public class IssueParserTest {
         assertNotNull(al);
         assertEquals(3, al.size());
         Issue issue0 = al.get(0);
-        assertEquals(295014135,issue0.getId());
+        assertEquals(299182369, issue0.getId());
     }
-    
+
 }

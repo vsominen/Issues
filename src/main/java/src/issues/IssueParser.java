@@ -8,14 +8,16 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
-public class IssueParser { 
+public class IssueParser {
     public List<Issue> parseIssues(String i) {
         Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'")
-                .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
-                .create(); 
+                .setFieldNamingPolicy(
+                        FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
+                .create();
         List<Issue> issues = new ArrayList<Issue>();
-        Type collectionType = new TypeToken<List<Issue>>(){}.getType();
+        Type collectionType = new TypeToken<List<Issue>>() {
+        }.getType();
         issues = gson.fromJson(i, collectionType);
-        return issues;   
+        return issues;
     }
 }
