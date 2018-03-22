@@ -3,10 +3,6 @@ package issues;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.HashMap;
-import java.util.Map;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpHost;
@@ -28,23 +24,25 @@ import org.apache.http.util.EntityUtils;
 import org.junit.Test;
 
 public class GitHubRestClient {
-    @Test
-    public void test() throws URISyntaxException, IOException {
-        Map<String,String> param=new HashMap<String,String>();
-        param.put("state", "closed");
+
+    private static String url = "/repos/SoftwareStudioSpring2018/githubapi-issues-vsominen/issues";
+
+    public static void main(String[] args) throws IOException {
         GitHubRestClient prototype = new GitHubRestClient();
-        try{
-            String json = prototype.requestIssues("vsominen", "Vydehi@17", param);
-            System.out.println(param);
-            System.out.println(json);
-        }
-        catch(Exception e) {
-            System.out.println(e);
-        }
+        String json = prototype.requestIssues("vsominen", "Vydehi@17", "open");
+        System.out.println(json);
     }
 
-    public String requestIssues(String username, String password, Map<String,String> param) throws URISyntaxException, IOException {
+    public String requestIssues(String username, String password, String state)
+            throws IOException {
         String jsonContent = null;
+        String s = null;
+        if ("open".equals(state)) {
+            s = url + "?state=open";
+        }
+        else if ("closed".equals(state)) {
+            s = url + "?state=closed";
+        }
         HttpHost target = new HttpHost("api.github.com", 443, "https");
         CredentialsProvider credsProvider = new BasicCredentialsProvider();
         credsProvider.setCredentials(
@@ -60,44 +58,24 @@ public class GitHubRestClient {
 
         HttpClientContext localContext = HttpClientContext.create();
         localContext.setAuthCache(authCache);
-        
-        URIBuilder uribuilder=new URIBuilder();
-        uribuilder.setPath("/repos/SoftwareStudio-Spring2018/githubapi-issues-"+username+"/issues");
-        if(param!=null) {
-            for(String k:param.keySet()) {
-                uribuilder.setParameter(k,param.get(k));
-            }
-        }
-        URI uri=uribuilder.build();
-        HttpGet httpget = new HttpGet(uri);
-        CloseableHttpResponse response=null;
+
+        HttpGet httpget = new HttpGet(s);
         try {
-             response = httpclient.execute(target, httpget, localContext);
-            System.out.println(response.getStatusLine()); 
-            //TODO check for status 200 before proceeding
-
+            CloseableHttpResponse response = httpclient.execute(target, httpget,
+                    localContext);
+            System.out.println(response.getStatusLine());
             HttpEntity entity = response.getEntity();
-
-            BufferedReader reader = new BufferedReader(new InputStreamReader(entity.getContent()));
-
+            BufferedReader reader = new BufferedReader(
+                    new InputStreamReader(entity.getContent()));
             jsonContent = reader.readLine();
-
             EntityUtils.consume(entity);
+            reader.close();
         }
         catch (ClientProtocolException e) {
-            System.out.println("Exception in HTTP Client");
-            // TODO properly handle exception
             e.printStackTrace();
         }
         catch (IOException e) {
-            System.out.println("Exception in IO");
-            // TODO properly handle exception
             e.printStackTrace();
-        }
-        finally {
-            //TODO close all resources
-            response.close();
-            httpclient.close();
         }
         return jsonContent;
     }

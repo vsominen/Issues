@@ -3,35 +3,40 @@ package issues;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Scanner;
 
-public class IssuesExporter { 
+public class IssuesExporter {
 
-    public static void main() throws IOException {
-        
-        PrintWriter out=new PrintWriter(new File("issues.txt"));
-        try {     
-        Issue one=new Issue();
-        Issue two=new Issue();
-        Issue three=new Issue();
-        one.setState("closed");
-        two.setState("open");
-        List<Issue> obj=new ArrayList<Issue>();
-        obj.add(one);
-        obj.add(two);
-        obj.add(three);
-        System.out.println("No.of Issues "+obj.size());
-            for(Issue i:obj){
-                out.println(i.toString());
-            }
+    public static void main(String[] args) throws IOException {
+        IssuesExporter obj = new IssuesExporter();
+        obj.exportMethodIssue();
+    }
+
+    public void exportMethodIssue() throws IOException {
+        PrintWriter o = new PrintWriter(new File("issues.txt"));
+        System.out.println("Username");
+        Scanner cin = new Scanner(System.in);
+        String username = cin.nextLine();
+        System.out.println("Password");
+        String password = cin.nextLine();
+        GitHubRestClient client = new GitHubRestClient();
+
+        String json = client.requestIssues(username, password, "open");
+        String jsonNew = client.requestIssues(username, password, "closed");
+        IssueParser parser = new IssueParser();
+
+        List<Issue> closed = parser.parseIssues(jsonNew);
+        List<Issue> open = parser.parseIssues(json);
+        open.addAll(closed);
+        Collections.sort(open);
+
+        for (Issue i : open) {
+            o.println(i.toString());
         }
-        catch(Exception e) {
-            System.out.println(e);
-        }
-        finally {
-            out.close();
-        } 
+        System.out.println("the size is : " + open.size());
+
     }
 
 }
