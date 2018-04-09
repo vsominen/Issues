@@ -17,7 +17,7 @@ public class IssueParserTest {
     @Before
     public void setUp() throws Exception {
         BufferedReader reader = new BufferedReader(new FileReader(
-                "C:\\github-repos\\githubapi-issues-vsominen\\src\\main\\java\\src\\issues\\sample-output.txt"));
+                "C:\\github-repos\\githubapi-issues-vsominen\\sample-output.txt"));
         StringBuilder sb = new StringBuilder();
         String line = reader.readLine();
         while (line != null) {

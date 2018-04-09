@@ -1,5 +1,3 @@
-
-
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -22,11 +20,9 @@ public class IssuesExporter {
         System.out.println("Password");
         String password = cin.nextLine();
         GitHubRestClient client = new GitHubRestClient();
-
         String json = client.requestIssues(username, password, "open");
         String jsonNew = client.requestIssues(username, password, "closed");
         IssueParser parser = new IssueParser();
-
         List<Issue> closed = parser.parseIssues(jsonNew);
         List<Issue> open = parser.parseIssues(json);
         open.addAll(closed);
