@@ -1,1 +1,0 @@
-Issue [number=5, id=4, state=closed, title=New Issue, body=Hello, createdAt=Tue Jan 17 00:08:00 EST 2017, closedAt=Fri Jan 19 00:02:00 EST 2018, user=User [login=vsominen, id=4], assignee=User [login=vsominen, id=4]]
