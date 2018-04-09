@@ -1,4 +1,3 @@
-package issues;
 
 public class User {
 

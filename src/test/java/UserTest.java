@@ -1,11 +1,10 @@
-package issues;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
-import issues.User;
+
 
 public class UserTest {
     private User u1;

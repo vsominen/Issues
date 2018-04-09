@@ -1,4 +1,3 @@
-package issues;
 
 import java.io.BufferedReader;
 import java.io.IOException;
